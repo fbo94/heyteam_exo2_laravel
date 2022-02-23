@@ -7,6 +7,7 @@ use App\Domain\Todos\Modules\Requests\Delete;
 use App\Domain\Todos\Modules\Requests\Get;
 use App\Domain\Todos\Modules\Requests\Liste;
 use App\Domain\Todos\Modules\Requests\Update;
+use ReflectionClass;
 
 /**
  * @mixin Get
@@ -18,8 +19,14 @@ use App\Domain\Todos\Modules\Requests\Update;
  */
 class Requests
 {
-    public function __call($name, $arguments)
+    public function __call(string $name, mixed $arguments): callable
     {
-        return (new \ReflectionClass(__CLASS__ . '\\' . ucfirst($name)))->newInstance()->$name(...$arguments);
+        $class = __CLASS__ . '\\' . ucfirst($name);
+
+        if (!class_exists($class)) {
+            throw new \InvalidArgumentException('La classe '.$name.' n\'existe pas');
+        }
+
+        return (new ReflectionClass($class))->newInstance()->$name(...$arguments);
     }
 }

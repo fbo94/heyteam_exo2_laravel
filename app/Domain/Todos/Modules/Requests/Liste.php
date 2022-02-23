@@ -5,12 +5,18 @@ namespace App\Domain\Todos\Modules\Requests;
 use App\Domain\Todos\Entity\Todo;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use stdClass;
 
 class Liste extends Base
 {
+    /**
+     * @return Collection<Todo>
+     */
     public function liste(): Collection
     {
         $response = $this->client->get('/');
+
+        /** @var array<int, stdClass> $data */
         $data = $response->object();
 
         $list = Collection::make();

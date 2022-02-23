@@ -10,6 +10,7 @@ class Get extends Base
     public function get(string $id): Todo
     {
         $response = $this->client->get('/' . $id);
+        /** @var \stdClass $data */
         $data = $response->object();
 
         return new Todo(
