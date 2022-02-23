@@ -13,14 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/todos', [TodoController::class, 'index'])->name('todos.index');
-Route::get('/todos/new', [TodoController::class, 'new'])->name('todos.new');
-Route::get('/todos/{id}', [TodoController::class, 'show'])->name('todos.get');
-Route::post('/todos', [TodoController::class, 'create'])->name('todos.create');
-Route::post('/todos/{id}', [TodoController::class, 'update'])->name('todos.update');
-Route::get('/get/{id}/delete', [TodoController::class, 'delete'])->name('todos.delete');
+Route::get('/', [TodoController::class, 'index'])->name('todos.index');
+Route::get('//new', [TodoController::class, 'new'])->name('todos.new');
+Route::get('/{id}', [TodoController::class, 'show'])->name('todos.get');
+Route::post('/', [TodoController::class, 'create'])->name('todos.create');
+Route::post('/{id}', [TodoController::class, 'update'])->name('todos.update');
+Route::get('/{id}/delete', [TodoController::class, 'delete'])->name('todos.delete');

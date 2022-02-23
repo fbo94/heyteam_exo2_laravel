@@ -3,6 +3,7 @@
 namespace App\Domain\Todos\Modules\Requests;
 
 use App\Domain\Todos\Entity\Todo;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class Update extends Base
 {
@@ -14,6 +15,9 @@ class Update extends Base
                 'text' => $todo->getText(),
             ]
         );
-        $data = $response->object();
+
+        if ($response->failed()) {
+            throw new BadRequestException(sprintf('Error on todo id %s for update', $todo->getId()));
+        }
     }
 }

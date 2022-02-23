@@ -2,6 +2,8 @@
 
 namespace App\Domain\Todos\Modules\Requests;
 
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+
 class Create extends Base
 {
     public function create(bool $isChecked, string $text): void
@@ -12,5 +14,9 @@ class Create extends Base
                 'text' => $text,
             ]
         );
+
+        if ($query->failed()) {
+            throw new BadRequestException('Error on request');
+        }
     }
 }

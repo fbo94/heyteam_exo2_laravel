@@ -2,12 +2,12 @@
 
 namespace App\Domain\Todos\Modules\Requests;
 
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 
 abstract class Base
 {
-    /** @var Http */
-    protected $client;
+    protected PendingRequest $client;
 
     public function __construct()
     {

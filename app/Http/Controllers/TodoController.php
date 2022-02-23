@@ -9,10 +9,7 @@ use Illuminate\View\View;
 
 class TodoController extends \Illuminate\Routing\Controller
 {
-    /**
-     * @var Requests
-     */
-    private $todoModule;
+    private Requests $todoModule;
 
     public function __construct(Requests $todoModule)
     {

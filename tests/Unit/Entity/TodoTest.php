@@ -41,5 +41,8 @@ class TodoTest extends TestCase
     public function testUpdatedAt(): void
     {
         $this->assertInstanceOf(Carbon::class,$this->todoTest->getUpdatedAt());
+        $date = Carbon::now();
+        $this->todoTest->setUpdatedAt($date);
+        $this->assertEquals($date,$this->todoTest->getUpdatedAt());
     }
 }
