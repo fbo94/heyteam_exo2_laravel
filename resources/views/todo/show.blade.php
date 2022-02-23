@@ -1,6 +1,9 @@
 @extends('layouts.default')
+@section('title')
+    Todo {{$todo->getText()}} du {{$todo->getCreatedAt()->format('d/m/Y')}}
+@endsection
 @section('content')
-    <h1>Todo {{$todo->getText()}} du {{$todo->getCreatedAt()->format('d/m/Y')}}</h1>
+
     <form action="{{route('todos.update',['id'=>$todo->getId()])}}" method="POST">
         @csrf
         <div class="mb-3">

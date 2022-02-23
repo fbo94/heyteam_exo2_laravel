@@ -1,6 +1,8 @@
 @extends('layouts.default')
+@section('title')
+    Nouveau Todo
+@endsection
 @section('content')
-    <h1>Nouveau Todo</h1>
     <form action="{{route('todos.create')}}" method="POST">
         @csrf
         <div class="mb-3">

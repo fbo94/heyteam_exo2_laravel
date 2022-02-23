@@ -1,7 +1,8 @@
 @extends('layouts.default')
+@section('title')
+    Liste des todos
+@endsection
 @section('content')
-    <h1>Liste des todos</h1>
-
     <a href="{{route('todos.new')}}" class="btn btn-primary">Créer un todo</a>
     <table class="table">
         <thead>
